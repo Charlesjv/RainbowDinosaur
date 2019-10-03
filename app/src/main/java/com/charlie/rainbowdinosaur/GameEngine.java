@@ -146,8 +146,10 @@ public class GameEngine extends SurfaceView implements Runnable {
 //        this.item.setxPosition(this.player.getxPosition()- 10);
 //        this.item.updateHitbox();
 
-            this.item.setxPosition(this.item.getxPosition() +10);
-            this.item.updateHitbox();
+//            this.item.getImage().setxPosition(this.item.getxPosition() +10);
+//            this.item.updateHitbox();
+
+            this.item.xPosition = this.item.xPosition + 15;
 
 
 
@@ -237,8 +239,15 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             this.canvas.drawRect(this.item.getHitbox().left,this.item.getHitbox().top, this.item.getHitbox().right,this.item.getHitbox().bottom,paintbrush);
 
+            //Score Label
+            paintbrush.setTextSize(50);
+            this.canvas.drawText("Score: 0 ",this.screenWidth/2 + 40, 30,paintbrush);
 
 
+            // Lives Label
+
+            paintbrush.setTextSize(50);
+            this.canvas.drawText("Lives = 3 ",this.screenWidth/2 + 40, 300,paintbrush);
             //----------------
             this.holder.unlockCanvasAndPost(canvas);
         }
