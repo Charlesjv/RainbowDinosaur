@@ -152,6 +152,9 @@ public class GameEngine extends SurfaceView implements Runnable {
             paintbrush.setStyle(Paint.Style.STROKE);
             paintbrush.setStrokeWidth(5);
 
+            // Players Hitbox
+            this.canvas.drawRect(this.player.getHitbox().left,this.player.getHitbox().top, this.player.getHitbox().right,this.player.getHitbox().bottom,paintbrush);
+
             //----------------
             this.holder.unlockCanvasAndPost(canvas);
         }
