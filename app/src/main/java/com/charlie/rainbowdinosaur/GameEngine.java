@@ -56,6 +56,11 @@ public class GameEngine extends SurfaceView implements Runnable {
 
     String fingerAction = "";
 
+
+    int mouseXPosition;
+    int mouseYPosition;
+
+
     // represent the TOP LEFT CORNER OF THE GRAPHIC
 
     // ----------------------------
@@ -81,6 +86,7 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
     }
+
 
 
 
@@ -145,20 +151,43 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
 
-            if(fingerAction == "mouseup"){
-
-                this.player.setyPosition(this.player.getyPosition() - 70);
-                this.player.updateHitbox();
-            }else if(fingerAction == "mousedown"){
-
-                this.player.setyPosition(this.player.getyPosition() + 70);
-                this.player.updateHitbox();
-
-            }
+//            if(fingerAction == "mouseup"){
+//
+//                this.player.setyPosition(this.player.getyPosition() - 70);
+//                this.player.updateHitbox();
+//            }else if(fingerAction == "mousedown"){
+//
+//                this.player.setyPosition(this.player.getyPosition() + 70);
+//                this.player.updateHitbox();
+//
+//            }
 
 
 
     }
+
+
+
+//    public void mouseDistance( int mousex1, int mousey1, int playerx2, int playery2){
+//
+//        double a = (mousex1 - playerx2);
+//        double b = (mousey1 - playery2);
+//        double distance = Math.sqrt((a * a) + (b * b));
+//
+//        // 2. calculate the "rate" to move
+//        double xn = (a / distance);
+//        double yn = (b / distance);
+//
+//        // 3. move the bullet
+//        playerx2 = playerx2 + (int) (xn * 15);
+//        playery2 = playery2 + (int) (yn * 15);
+//
+////        Log.d(TAG, "Position of bullet " + i + ": (" + bull.x + "," + bull.y + ")");
+////
+//
+//    }
+
+
 
     public void redrawSprites() {
         if (this.holder.getSurface().isValid()) {
@@ -231,22 +260,33 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
 
-    int middle = this.screenHeight/2;
+    int middle = 148;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int userAction = event.getActionMasked();
         //@TODO: What should happen when person touches the screen?
         if (userAction == MotionEvent.ACTION_DOWN) {
+            mouseXPosition = (int) event.getX();
+            mouseYPosition = (int) event.getY();
 
-            int x = (int) event.getX();
-            int y = (int) event.getY();
+            Log.d(TAG,"Mouse x "+"Mouse Y "+mouseXPosition+","+mouseYPosition);
 
-            if(y > screenHeight/2){
+            if(mouseYPosition > middle){
 
-                fingerAction = "mousedown";
-            }else if (y< screenHeight/2){
-                fingerAction = "mouseup";
+
+
+
+               this.player.setyPosition(this.player.getyPosition() + 10);
+                this.player.updateHitbox();
+
+
+
+            }else if(mouseYPosition < middle){
+
+
+                this.player.setyPosition(this.player.getyPosition() - 10);
+                this.player.updateHitbox();
             }
 
 
