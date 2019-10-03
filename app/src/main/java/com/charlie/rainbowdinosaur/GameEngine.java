@@ -38,6 +38,8 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
 
+
+
     // -----------------------------------
     // GAME SPECIFIC VARIABLES
     // -----------------------------------
@@ -45,6 +47,11 @@ public class GameEngine extends SurfaceView implements Runnable {
     // ----------------------------
     // ## SPRITES
     // ----------------------------
+
+    Player player;
+    Item item;
+
+
 
     // represent the TOP LEFT CORNER OF THE GRAPHIC
 
@@ -63,6 +70,9 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.screenHeight = h;
 
         this.printScreenInfo();
+
+        this.player = new Player(this.getContext(),screenWidth/2+300, 100);
+
     }
 
 
@@ -129,6 +139,11 @@ public class GameEngine extends SurfaceView implements Runnable {
             this.canvas.drawColor(Color.argb(255,255,255,255));
             paintbrush.setColor(Color.WHITE);
 
+
+
+            //Draw player on the screen
+
+            this.canvas.drawBitmap(this.player.getImage(),screenWidth/2 + 300 ,100,paintbrush);
 
             // DRAW THE PLAYER HITBOX
             // ------------------------
