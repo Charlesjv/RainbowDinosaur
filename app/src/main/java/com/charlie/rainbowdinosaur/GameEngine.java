@@ -52,6 +52,8 @@ public class GameEngine extends SurfaceView implements Runnable {
     Player player;
     Item item;
 
+    Player enemy;
+
 
 
     // represent the TOP LEFT CORNER OF THE GRAPHIC
@@ -73,6 +75,8 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.printScreenInfo();
 
         this.player = new Player(this.getContext(),screenWidth/2+300, 100);
+
+        this.item = new Item(this.getContext(),100,30);
 
 
 
@@ -130,6 +134,10 @@ public class GameEngine extends SurfaceView implements Runnable {
     // ------------------------------
 
     public void updatePositions() {
+
+
+
+
     }
 
     public void redrawSprites() {
@@ -156,6 +164,13 @@ public class GameEngine extends SurfaceView implements Runnable {
                 this.canvas.drawLine(0, LINE_POSITION * i, this.screenWidth - 170, LINE_POSITION * i, paintbrush);
 
             }
+
+
+            //DRAWING ENEMIES ON THE SCREEN
+
+            this.canvas.drawBitmap(this.item.getImage(),100,LINE_POSITION -15,paintbrush);
+
+
             // DRAW THE PLAYER HITBOX
             // ------------------------
             // 1. change the paintbrush settings so we can see the hitbox
@@ -163,8 +178,17 @@ public class GameEngine extends SurfaceView implements Runnable {
             paintbrush.setStyle(Paint.Style.STROKE);
             paintbrush.setStrokeWidth(5);
 
+
+
+
             // Players Hitbox
             this.canvas.drawRect(this.player.getHitbox().left,this.player.getHitbox().top, this.player.getHitbox().right,this.player.getHitbox().bottom,paintbrush);
+
+            //Enemy Hitbox
+
+            this.canvas.drawRect(this.item.getHitbox().left,this.item.getHitbox().top, this.item.getHitbox().right,this.item.getHitbox().bottom,paintbrush);
+
+
 
             //----------------
             this.holder.unlockCanvasAndPost(canvas);
