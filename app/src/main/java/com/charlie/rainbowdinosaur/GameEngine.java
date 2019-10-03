@@ -54,7 +54,7 @@ public class GameEngine extends SurfaceView implements Runnable {
 
     Player enemy;
 
-
+    String fingerAction = "";
 
     // represent the TOP LEFT CORNER OF THE GRAPHIC
 
@@ -76,7 +76,7 @@ public class GameEngine extends SurfaceView implements Runnable {
 
         this.player = new Player(this.getContext(),screenWidth/2+300, 100);
 
-        this.item = new Item(this.getContext(),100,30);
+        this.item = new Item(this.getContext(),80,LINE_POSITION - 50);
 
 
 
@@ -137,6 +137,26 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
 
+//        this.item.setxPosition(this.player.getxPosition()- 10);
+//        this.item.updateHitbox();
+
+            this.item.setxPosition(this.item.getxPosition() +10);
+            this.item.updateHitbox();
+
+
+
+            if(fingerAction == "mouseup"){
+
+                this.player.setyPosition(this.player.getyPosition() - 70);
+                this.player.updateHitbox();
+            }else if(fingerAction == "mousedown"){
+
+                this.player.setyPosition(this.player.getyPosition() + 70);
+                this.player.updateHitbox();
+
+            }
+
+
 
     }
 
@@ -168,7 +188,7 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             //DRAWING ENEMIES ON THE SCREEN
 
-            this.canvas.drawBitmap(this.item.getImage(),100,LINE_POSITION -15,paintbrush);
+            this.canvas.drawBitmap(this.item.getImage(),80,LINE_POSITION - 50 ,paintbrush);
 
 
             // DRAW THE PLAYER HITBOX
@@ -209,13 +229,26 @@ public class GameEngine extends SurfaceView implements Runnable {
     // ------------------------------
 
 
-    String fingerAction = "";
+
+
+    int middle = this.screenHeight/2;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int userAction = event.getActionMasked();
         //@TODO: What should happen when person touches the screen?
         if (userAction == MotionEvent.ACTION_DOWN) {
+
+            int x = (int) event.getX();
+            int y = (int) event.getY();
+
+            if(y > screenHeight/2){
+
+                fingerAction = "mousedown";
+            }else if (y< screenHeight/2){
+                fingerAction = "mouseup";
+            }
+
 
         }
         else if (userAction == MotionEvent.ACTION_UP) {

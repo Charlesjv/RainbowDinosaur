@@ -22,14 +22,14 @@ public class Item {
         this.yPosition = y;
 
         // 2. Set the default image - all enemies have same image
-        this.image = BitmapFactory.decodeResource(context.getResources(), R.drawable.poop64);
+        this.image = BitmapFactory.decodeResource(context.getResources(), R.drawable.poop32);
 
         // 3. Set the default hitbox - all enemies have same hitbox
         this.hitbox = new Rect(
                 this.xPosition,
                 this.yPosition,
                 this.xPosition + this.image.getWidth(),
-                this.yPosition + this.image.getHeight() + 12
+                this.yPosition + this.image.getHeight()
         );
     }
 
@@ -66,5 +66,12 @@ public class Item {
 
     public void setyPosition(int yPosition) {
         this.yPosition = yPosition;
+    }
+
+    public void updateHitbox() {
+        this.hitbox.left = this.xPosition;
+        this.hitbox.top = this.yPosition;
+        this.hitbox.right = this.xPosition + this.image.getWidth();
+        this.hitbox.bottom = this.yPosition + this.image.getHeight();
     }
 }

@@ -11,8 +11,8 @@ public class Player {
     private Bitmap image;
     private Rect hitbox;
 
-    private int xPosition;
-    private int yPosition;
+    public int xPosition;
+    public int yPosition;
 
     public Player(Context context, int x, int y) {
         // 1. set up the initial position of the Enemy
@@ -63,5 +63,13 @@ public class Player {
 
     public void setyPosition(int yPosition) {
         this.yPosition = yPosition;
+    }
+
+
+    public void updateHitbox() {
+        this.hitbox.left = this.xPosition;
+        this.hitbox.top = this.yPosition;
+        this.hitbox.right = this.xPosition + this.image.getWidth();
+        this.hitbox.bottom = this.yPosition + this.image.getHeight();
     }
 }
