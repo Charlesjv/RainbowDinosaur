@@ -36,6 +36,7 @@ public class GameEngine extends SurfaceView implements Runnable {
     Canvas canvas;
     Paint paintbrush;
 
+    int LINE_POSITION = 70;
 
 
 
@@ -72,6 +73,8 @@ public class GameEngine extends SurfaceView implements Runnable {
         this.printScreenInfo();
 
         this.player = new Player(this.getContext(),screenWidth/2+300, 100);
+
+
 
     }
 
@@ -145,6 +148,14 @@ public class GameEngine extends SurfaceView implements Runnable {
 
             this.canvas.drawBitmap(this.player.getImage(),screenWidth/2 + 300 ,100,paintbrush);
 
+
+            //Draw lines on the screen
+            paintbrush.setColor(Color.BLACK);
+
+            for(int i = 1; i <= 4; i++) {
+                this.canvas.drawLine(0, LINE_POSITION * i, this.screenWidth - 170, LINE_POSITION * i, paintbrush);
+
+            }
             // DRAW THE PLAYER HITBOX
             // ------------------------
             // 1. change the paintbrush settings so we can see the hitbox
