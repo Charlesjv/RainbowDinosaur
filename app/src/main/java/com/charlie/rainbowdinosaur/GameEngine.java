@@ -143,11 +143,9 @@ public class GameEngine extends SurfaceView implements Runnable {
 
 
 
-//        this.item.setxPosition(this.player.getxPosition()- 10);
-//        this.item.updateHitbox();
+        this.item.setxPosition(this.item.getxPosition()- 10);
+        this.item.updateHitbox();
 
-//            this.item.getImage().setxPosition(this.item.getxPosition() +10);
-//            this.item.updateHitbox();
 
             this.item.xPosition = this.item.xPosition + 15;
 
